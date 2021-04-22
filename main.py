@@ -24,7 +24,11 @@ print(RetailPrices.shape)
 EP = PrimaryEnergy.merge(RetailPrices, on = 'YYYYMM', suffixes=('_Energy','_Prices'))
 
 EP = EP[['YYYYMM', 'Value_Energy','Description_Energy', 'Value_Prices','Description_Prices']]
-print(EP.columns)
+
+
+EP_Totals = EP[(EP['Description_Energy']=='Total Primary Energy Production') & (EP['Description_Prices']=='Average Retail Price of Electricity, Total')]
+print(EP_Totals.head())
+
 
 #creating a pivot of the data
 pivot_Energy = EP.pivot_table(values=["Value_Energy"], index=["YYYYMM"], columns=["Description_Energy"], aggfunc='sum')
