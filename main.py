@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 import os
-import matplotlib as mpl
+import matplotlib.pyplot as plt
 import seaborn as sb
 
 #import the datasets
@@ -22,6 +22,8 @@ print(RetailPrices.shape)
 
 #merging the two data sets
 EP = PrimaryEnergy.merge(RetailPrices, on = 'YYYYMM', suffixes=('_Energy','_Prices'))
+
+EP = EP[['YYYYMM', 'Value_Energy','Description_Energy', 'Value_Prices','Description_Prices']]
 print(EP.columns)
 
 #creating a pivot of the data
